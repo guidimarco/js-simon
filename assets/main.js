@@ -4,7 +4,7 @@ $("document").ready(function() {
     var max = 100; // max value random number
     var totNumbers = 5; // total of rnd-n
     var rndNumbers = []; // array of rnd-n
-    var time = 5; // (sec) after that time cards --> hidden
+    var time = 30; // (sec) after that time cards --> hidden
     var userNumbers = []; // user-numbers
     var userNotRndNumb = []; // user-number not in the rnd-n --> intersection
 
@@ -15,7 +15,7 @@ $("document").ready(function() {
     console.log("Numeri estratti:");
     console.log(rndNumbers);
 
-    // STEP 2 create card (with numbers) in html
+    // STEP 2 create card (with rnd-numbers) in html
     cardCreator(rndNumbers);
 
     // BONUS STEP countdown timer
@@ -46,36 +46,20 @@ $("document").ready(function() {
             // STEP 5 make card visible again
             onOffCard();
 
-            // STEP 6 check user numbers
-            for (var i = 0; i < rndNumbers.length; i++) {
-
-                if (userNumbers.includes(rndNumbers[i])) {
-                    $(".card").eq(i).addClass("found")
-                } else {
-                    $(".card").eq(i).addClass("not-found")
-                }
-
-            }
+            // STEP 6 check user numbers + output
+            checkAndStamp(userNumbers, rndNumbers);
 
             // STEP 7 create user card (there are not in rnd-numbers)
             userNotRndNumb = userNumbers.filter(x => !rndNumbers.includes(x));
 
-            // add card in html
             if (userNotRndNumb.length != 0) {
-                // generate the div container
-                var userCardContainer;
-                userCardContainer = $("<div></div>").addClass("container").appendTo($("main"));
-
-                var currentCard;
-                for (var i = 0; i < userNotRndNumb.length; i++) {
-                    currentCard = $("<div>" + userNotRndNumb[i] + "</div>").addClass("card not-found").appendTo(userCardContainer);
-                }
+                // add card in html
+                userCardGenerator(userNotRndNumb);
             }
+
         }, 1000);
 
-
     }, (time * 1000)); // fine after "time" sec
-
 
 }); // fine codice js
 
@@ -117,12 +101,12 @@ function cardCreator(numbers) {
 }
 // #/2-fold EEEEE CARD CREATOR EEEEE
 
-// #2-fold SSSSS HIDDEN CARD SSSSS
+// #2-fold SSSSS ON-OFF CARD SSSSS
 // hidden card
 function onOffCard() {
     $(".card").toggleClass("hidden");
 }
-// #/2-fold EEEEE HIDDEN CARD EEEEE
+// #/2-fold EEEEE ON-OFF CARD EEEEE
 
 // #2-fold SSSSS ASK A NUMBER SSSSS
 // ask a CORRECT number from min to max INCLUDES
@@ -152,8 +136,40 @@ function askNumbers(min, max, tot) {
 }
 // #/2-fold EEEEE ASK TOT NUMBER EEEEE
 
+// #2-fold SSSSS CHECK AND STAMP SSSSS
+// check user-numbers (array1) and rnd-askNumbers (array2) and stamp in HTML
+function checkAndStamp(array1, array2) {
 
+    for (var i = 0; i < array2.length; i++) {
 
+        if (array1.includes(array2[i])) {
+            // element of array 2 is array 1
+            $(".card").eq(i).addClass("found");
+        } else {
+            // element of array 2 isn't array 1
+            $(".card").eq(i).addClass("not-found");
+        }
 
+    }
+}
+// #/2-fold EEEEE CHECK AND STAMP EEEEE
+
+// #2-fold SSSSS user card generator SSSSS
+// stam in html the user-number that are not in rnd
+function userCardGenerator(array) {
+    // LOCAL VAR ASSIGNMENT
+    var userCardContainer; // new div --> card-container
+    var currentCard; // new card
+
+    // generate the div container
+    userCardContainer = $("<div></div>").addClass("container").appendTo($("main"));
+
+    // push the card card container
+    for (var i = 0; i < array.length; i++) {
+        currentCard = $("<div>" + array[i] + "</div>").addClass("card not-found").appendTo(userCardContainer);
+    }
+
+}
+// #/2-fold EEEEE user card generator EEEEE
 
 // </1-fold> EEEEE ALL FUNCTION EEEEE
