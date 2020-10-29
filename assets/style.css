@@ -9,7 +9,9 @@
 /* </1-fold> EEEEE RESET E NORMALIZZAZIONE EEEEE */
 
 /* <1-fold SSSSS ALL DOC CLASSES SSSSS */
-
+body {
+    font-family: sans-serif;
+}
 /* #2-fold SSSSS SYMBOLS SSSSS */
 
 /* #/2-fold> EEEEE SYMBOLS EEEEE */
@@ -33,10 +35,40 @@
 /* ----- HTML ----- */
 /* ---------------- */
 /* ---------------- */
-/* <1-fold SSSSS HEADER SSSSS */
+/* <1-fold SSSSS MAIN SSSSS */
+main {
+    height: 100vh;
+    background-color: lightgreen;
+    display: flex;
+}
 
-/* #2-fold SSSSS region SSSSS */
+/* #2-fold SSSSS CONTAINER SSSSS */
+.container {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
 
-/* #/2-fold EEEEE endregion EEEEE */
+.card {
+    width: 100px;
+    height: 150px;
+    background-color: #f2f2f2;
+    color: black;
+    border: 10px solid #f2f2f2;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+.card.hidden {
+    background-color: black;
+    color: black;
+    border-color: black;
+}
 
-/* </1-fold> EEEEE HEADER EEEEE */
+/* #/2-fold EEEEE CONTAINER EEEEE */
+
+/* </1-fold> EEEEE MAIN EEEEE */
