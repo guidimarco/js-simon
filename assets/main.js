@@ -11,33 +11,40 @@ $("document").ready(function() {
     // STEP 1 numbers generator
     rndNumbers = getRndArray(min, max, totNumbers);
     // stamp
+    console.log("Numeri estratti:");
     console.log(rndNumbers);
 
     // STEP 2 create card (with numbers) in html
     cardCreator(rndNumbers);
 
-    // AFTER "TIME" SEC
+    // AFTER "TIME" SEC with visible numbers
     setTimeout(function() {
-        // STEP 3 hidden the cards
-        hiddenCard();
 
-        $("document").ready(function() {
+        // STEP 3 --> hidden the cards
+        onOffCard();
+
+        setTimeout(function() { // it's necessary :(
             // STEP 4 ask numbers to user
             userNumbers = askNumbers(min, max, totNumbers);
             // stamp
+            console.log("Numeri inseriti:");
             console.log(userNumbers);
 
-            // userNumbers = askANumber(2, 5);
+            // STEP 5 make card visible again
+            onOffCard();
 
-            // STEP 4 control user numbers
-            // STEP 5 show correct answer
+            // STEP 6 check user numbers
+            for (var i = 0; i < rndNumbers.length; i++) {
+                userNumbers.includes(rndNumbers[i]);
 
-        });
+            }
+        }, 1000);
 
 
-    }, (time * 1000));
+    }, (time * 1000)); // fine after "time" sec
 
-});
+
+}); // fine codice js
 
 
 // <1-fold SSSSS ALL FUNCTION SSSSS
@@ -62,7 +69,6 @@ function getRndArray(min, max, tot) {
         if (!array.includes(n)) {
             array.push(n);
         }
-        console.log(n);
     }
 
     return array;
@@ -80,8 +86,8 @@ function cardCreator(numbers) {
 
 // #2-fold SSSSS HIDDEN CARD SSSSS
 // hidden card
-function hiddenCard() {
-    $(".card").addClass("hidden");
+function onOffCard() {
+    $(".card").toggleClass("hidden");
 }
 // #/2-fold EEEEE HIDDEN CARD EEEEE
 
