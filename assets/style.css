@@ -12,21 +12,6 @@
 body {
     font-family: sans-serif;
 }
-/* #2-fold SSSSS SYMBOLS SSSSS */
-
-/* #/2-fold> EEEEE SYMBOLS EEEEE */
-
-/* #2-fold SSSSS LINKS SSSSS */
-
-/* #/2-fold> EEEEE LINKS EEEEE */
-
-/* #2-fold SSSSS QUOTE SSSSS */
-
-/* #/2-fold> EEEEE QUOTE EEEEE */
-
-/* #2-fold SSSSS BTNS SSSSS */
-
-/* #/2-fold> EEEEE BTNS EEEEE */
 
 /* </1-fold> EEEEE ALL DOC CLASSES EEEEE */
 
@@ -40,12 +25,14 @@ main {
     height: 100vh;
     background-color: lightgreen;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     position: relative;
 }
 
 /* #2-fold SSSSS CONTAINER SSSSS */
 .container {
-    margin: auto;
     display: flex;
     justify-content: space-around;
 }
@@ -63,11 +50,30 @@ main {
     align-items: center;
     font-size: 24px;
     font-weight: bold;
+    position: relative;
 }
 .card.hidden {
     background-color: black;
     color: black;
     border-color: black;
+}
+.card.found::after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    color: green;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+}
+.card.not-found::after {
+    content: "\f00d";
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    top: 10%;
+    right: 10%;
 }
 
 /* #/2-fold EEEEE CONTAINER EEEEE */

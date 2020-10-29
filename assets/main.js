@@ -2,10 +2,11 @@ $("document").ready(function() {
     // GLOBAL VAR ASSIGNMENT
     var min = 1; // min value random number
     var max = 100; // max value random number
-    var totNumbers = 2; // total of rnd-n
+    var totNumbers = 5; // total of rnd-n
     var rndNumbers = []; // array of rnd-n
     var time = 5; // (sec) after that time cards --> hidden
     var userNumbers = []; // user-numbers
+    var userNotRndNumb = []; // user-number not in the rnd-n --> intersection
 
     // ALGORITHM
     // STEP 1 numbers generator
@@ -29,6 +30,8 @@ $("document").ready(function() {
 
         // TIMER STOP
         clearInterval(clock);
+        // cancel the clock
+        $(".timer").remove();
 
         // STEP 3 --> hidden the cards
         onOffCard();
@@ -44,14 +47,29 @@ $("document").ready(function() {
             onOffCard();
 
             // STEP 6 check user numbers
-            for (var i = 0; i < userNumbers.length; i++) {
+            for (var i = 0; i < rndNumbers.length; i++) {
 
-                if (rndNumbers.includes(userNumbers[i])) {
-                    console.log("Bravo! Hai preso il numero " + userNumbers[i] + ".");
+                if (userNumbers.includes(rndNumbers[i])) {
+                    $(".card").eq(i).addClass("found")
                 } else {
-                    console.log("Mi dispiace! Il numero " + userNumbers[i] + " non è nel mazzo.");
+                    $(".card").eq(i).addClass("not-found")
                 }
 
+            }
+
+            // STEP 7 create user card (there are not in rnd-numbers)
+            userNotRndNumb = userNumbers.filter(x => !rndNumbers.includes(x));
+
+            // add card in html
+            if (userNotRndNumb.length != 0) {
+                // generate the div container
+                var userCardContainer;
+                userCardContainer = $("<div></div>").addClass("container").appendTo($("main"));
+
+                var currentCard;
+                for (var i = 0; i < userNotRndNumb.length; i++) {
+                    currentCard = $("<div>" + userNotRndNumb[i] + "</div>").addClass("card not-found").appendTo(userCardContainer);
+                }
             }
         }, 1000);
 
