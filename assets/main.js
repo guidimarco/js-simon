@@ -4,7 +4,7 @@ $("document").ready(function() {
     var max = 100; // max value random number
     var totNumbers = 5; // total of rnd-n
     var rndNumbers = []; // array of rnd-n
-    var time = 2; // (sec) after that time cards --> hidden
+    var time = 5; // (sec) after that time cards --> hidden
     var userNumbers = []; // user-numbers
 
     // ALGORITHM
@@ -17,8 +17,17 @@ $("document").ready(function() {
     // STEP 2 create card (with numbers) in html
     cardCreator(rndNumbers);
 
+    // BONUS STEP countdown timer
+    var clock = setInterval(function() {
+        time--;
+        console.log(time);
+    }, 1000);
+
     // AFTER "TIME" SEC with visible numbers
     setTimeout(function() {
+
+        // TIMER STOP
+        clearInterval(clock);
 
         // STEP 3 --> hidden the cards
         onOffCard();
@@ -34,8 +43,13 @@ $("document").ready(function() {
             onOffCard();
 
             // STEP 6 check user numbers
-            for (var i = 0; i < rndNumbers.length; i++) {
-                userNumbers.includes(rndNumbers[i]);
+            for (var i = 0; i < userNumbers.length; i++) {
+
+                if (rndNumbers.includes(userNumbers[i])) {
+                    console.log("Bravo! Hai preso il numero " + userNumbers[i] + ".");
+                } else {
+                    console.log("Mi dispiace! Il numero " + userNumbers[i] + " non è nel mazzo.");
+                }
 
             }
         }, 1000);
@@ -118,6 +132,9 @@ function askNumbers(min, max, tot) {
     return array;
 }
 // #/2-fold EEEEE ASK TOT NUMBER EEEEE
+
+
+
 
 
 // </1-fold> EEEEE ALL FUNCTION EEEEE
