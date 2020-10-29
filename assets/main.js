@@ -2,7 +2,7 @@ $("document").ready(function() {
     // GLOBAL VAR ASSIGNMENT
     var min = 1; // min value random number
     var max = 100; // max value random number
-    var totNumbers = 5; // total of rnd-n
+    var totNumbers = 2; // total of rnd-n
     var rndNumbers = []; // array of rnd-n
     var time = 5; // (sec) after that time cards --> hidden
     var userNumbers = []; // user-numbers
@@ -18,9 +18,10 @@ $("document").ready(function() {
     cardCreator(rndNumbers);
 
     // BONUS STEP countdown timer
+    $(".timer").text(time); // start value
     var clock = setInterval(function() {
         time--;
-        console.log(time);
+        $(".timer").text(time);
     }, 1000);
 
     // AFTER "TIME" SEC with visible numbers

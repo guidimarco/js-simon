@@ -40,6 +40,7 @@ main {
     height: 100vh;
     background-color: lightgreen;
     display: flex;
+    position: relative;
 }
 
 /* #2-fold SSSSS CONTAINER SSSSS */
@@ -70,5 +71,22 @@ main {
 }
 
 /* #/2-fold EEEEE CONTAINER EEEEE */
+
+/* #2-fold SSSSS TIMER SSSSS */
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+/* #/2-fold EEEEE TIMER EEEEE */
 
 /* </1-fold> EEEEE MAIN EEEEE */
